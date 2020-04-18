@@ -3,7 +3,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Button from "@material-ui/core/Button";
 import {NavLink as ToLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserPhoto} from "../../actions/gallery";
+import {deletePhoto, getUserPhoto} from "../../actions/gallery";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -49,7 +49,7 @@ const UserPhoto = props => {
         dispatch(getUserPhoto(props.match.params.id))
     }, [dispatch, props.match.params.id]);
 
-    const userPhotoList = userPhoto.data && userPhoto.data.map(e => (
+    const userPhotoList = userPhoto.data && userPhoto.data[0] ? userPhoto.data.map(e => (
         <Grid item xs={3} style={{padding: '5px'}} key={e._id}>
             <Box boxShadow={3} className={classes.root}>
                 <Card>
@@ -70,6 +70,7 @@ const UserPhoto = props => {
                                 color="secondary"
                                 className={classes.button}
                                 startIcon={<DeleteIcon />}
+                                onClick={() => dispatch(deletePhoto(e._id))}
                             >
                                 Delete
                             </Button>
@@ -78,7 +79,7 @@ const UserPhoto = props => {
                 </Card>
             </Box>
         </Grid>
-    ));
+    )) : <Typography variant='h4'>Photo not found</Typography>;
 
     return (
         <>
@@ -108,7 +109,7 @@ const UserPhoto = props => {
                 open={open.open}
                 onClose={onCLose}
             >
-                <img src={open.image} alt='image'/>
+                <img src={open.image} alt={open.image}/>
             </MyModal>
         </>
     );

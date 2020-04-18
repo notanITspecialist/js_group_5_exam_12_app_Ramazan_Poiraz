@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllPhoto, getUserPhoto} from "../../actions/gallery";
+import {getAllPhoto} from "../../actions/gallery";
 import {makeStyles} from "@material-ui/core/styles";
 import MyModal from "../MyModal/MyModal";
-import Button from "@material-ui/core/Button";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import {NavLink as ToLink} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -80,7 +77,7 @@ const AllPhoto = props => {
                 open={open.open}
                 onClose={onCLose}
             >
-                <img src={open.image} alt='image' />
+                <img src={open.image} alt={open.image} />
             </MyModal>
         </>
     );
