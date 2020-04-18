@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "@material-ui/core/Button";
 import FacebookLogin from "../FacebookLogin/FacebookLogin";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -36,6 +37,7 @@ const Login = props => {
     const changeLoginForm = e => setLoginForm({...loginForm, [e.target.name]: e.target.value});
     return (
         <Container component="main" maxWidth="xs">
+            <Typography variant='h5'>Login</Typography>
             <div className={classes.paper}>
 
                 <form className={classes.form} noValidate onSubmit={registerUserOnSubmit}>

@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import ProfileUser from "./components/ProfileUser/ProfileUser";
 import UserPhoto from "./components/UserPhoto/UserPhoto";
 import AllPhoto from "./components/AllPhoto/AllPhoto";
+import AddPhoto from "./components/AddPhoto/AddPhoto";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={AllPhoto}/>
                     <Route path="/userPhoto/:id" exact component={UserPhoto}/>
+                    <Route path='/addPhoto' exact component={AddPhoto} />
                     <Route path="/profile" exact component={ProfileUser}/>
                     <Route path="/registration" exact component={Registration}/>
                     <Route path="/login" exact component={Login}/>

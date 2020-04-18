@@ -52,6 +52,7 @@ const UserBar = () => {
                 open={open}
                 onClose={handleClose}
             >
+                <MenuItem component={ToLink} to={'/userPhoto/'+user._id}>My gallery</MenuItem>
                 <MenuItem component={ToLink} to={'/profile'}>Profile</MenuItem>
                 <MenuItem onClick={() => dispatch(logoutUser())}>Logout</MenuItem>
             </Menu>

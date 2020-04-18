@@ -13,6 +13,7 @@ const NavBar = () => {
     const useStyles = makeStyles(() => ({
         root: {
             flexGrow: 1,
+            marginBottom: '5px'
         }
     }));
 
