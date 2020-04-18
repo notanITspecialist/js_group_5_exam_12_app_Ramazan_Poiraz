@@ -32,9 +32,6 @@ const AddPhoto = () => {
     const registerUserOnSubmit = async e => {
         e.preventDefault();
 
-        // if(loginForm.username.length < 5) return Toast.fail('Имя пользователя должно содержать больше 5 символов!',2000);
-        // if(loginForm.password.length < 5) return Toast.fail('Пароль должен содержать больше 5 символов!',2000);
-
         const data = new FormData();
 
         Object.keys(initAddForm).forEach(e => {

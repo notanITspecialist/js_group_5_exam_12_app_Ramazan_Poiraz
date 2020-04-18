@@ -22,6 +22,13 @@ export const getUserPhoto = id => async dispatch => {
   dispatch(getUserPhotoSuc(data.data))
 };
 
+export const deletePhoto = id => async (dispatch, getState) => {
+  const user = getState().authorization.user;
+  await axios.delete('http://localhost:8000/gallery/'+id, {headers: {'Authorization': 'Token ' + user.token}});
+
+  getUserPhoto(user._id)
+};
+
 export const addPhoto = info => async (dispatch, getState) => {
   const user = getState().authorization.user;
   await axios.post('http://localhost:8000/gallery', info, {headers: {'Authorization': 'Token ' + user.token}});

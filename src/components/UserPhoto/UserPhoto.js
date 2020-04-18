@@ -12,9 +12,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import {makeStyles} from "@material-ui/core/styles";
-import Chip from "@material-ui/core/Chip";
-import Avatar from "@material-ui/core/Avatar";
 import MyModal from "../MyModal/MyModal";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
     root: {
@@ -65,6 +64,16 @@ const UserPhoto = props => {
                         <Typography gutterBottom variant="h5" component="h2">
                             {e.title}
                         </Typography>
+                        {props.match.params.id === user._id && (
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                                startIcon={<DeleteIcon />}
+                            >
+                                Delete
+                            </Button>
+                        )}
                     </CardContent>
                 </Card>
             </Box>
