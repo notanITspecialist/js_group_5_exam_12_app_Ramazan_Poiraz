@@ -33,7 +33,9 @@ const useStyles = makeStyles({
 
 const UserPhoto = props => {
     const classes = useStyles();
+
     const dispatch = useDispatch();
+    const user = useSelector(state => state.authorization.user);
     const userPhoto = useSelector(state => state.gallery.userGallery);
 
     const [open, setOpen] = useState({
@@ -48,7 +50,7 @@ const UserPhoto = props => {
         dispatch(getUserPhoto(props.match.params.id))
     }, [dispatch, props.match.params.id]);
 
-    const userPhotoList = userPhoto && userPhoto.map(e => (
+    const userPhotoList = userPhoto.data && userPhoto.data.map(e => (
         <Grid item xs={3} style={{padding: '5px'}} key={e._id}>
             <Box boxShadow={3} className={classes.root}>
                 <Card>
@@ -59,12 +61,11 @@ const UserPhoto = props => {
                             title={e.title}
                         />
                     </CardActionArea>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {e.title}
-                            </Typography>
-                            <Chip avatar={<Avatar alt={e.author.username} src={e.author.avatar} />} label={e.author.displayName} onClick={() => props.history.push('/userPhoto/'+e.author._id)} />
-                        </CardContent>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {e.title}
+                        </Typography>
+                    </CardContent>
                 </Card>
             </Box>
         </Grid>
@@ -73,17 +74,24 @@ const UserPhoto = props => {
     return (
         <>
             <div>
-                <Button
-                    style={{float: 'right'}}
-                    variant="contained"
-                    color="primary"
-                    endIcon={<AddCircleOutlineIcon/>}
-                    component={ToLink} to={'/addPhoto'}
-                >
-                    Add new photo
-                </Button>
+                {props.match.params.id === user._id && (
+                    <Button
+                        style={{float: 'right'}}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<AddCircleOutlineIcon/>}
+                        component={ToLink} to={'/addPhoto'}
+                    >
+                        Add new photo
+                    </Button>
+                )}
 
-                <Grid container>
+                {userPhoto.author && <Typography
+                    variant='h4'>Author: {userPhoto.author.displayName} ({userPhoto.author.username})
+                </Typography>}
+
+
+                <Grid container style={{marginTop: '10px'}}>
                     {userPhotoList}
                 </Grid>
             </div>
@@ -91,7 +99,7 @@ const UserPhoto = props => {
                 open={open.open}
                 onClose={onCLose}
             >
-                <img src={open.image} alt='image' />
+                <img src={open.image} alt='image'/>
             </MyModal>
         </>
     );

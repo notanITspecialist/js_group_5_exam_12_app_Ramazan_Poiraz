@@ -2,7 +2,7 @@ import {GET_ALL_PHOTO, GET_USER_PHOTO} from "../actions/gallery";
 
 const initState = {
   allPhoto: [],
-  userGallery: []
+  userGallery: {}
 };
 
 const galleryReducer = (state = initState, action) => {
