@@ -41,7 +41,7 @@ const AddPhoto = () => {
             data.append(e, photo[e])
         });
 
-        await dispatch(addPhoto(data));
+        dispatch(addPhoto(data));
     };
 
     const changeLoginForm = e => setPhoto({...photo, [e.target.name]: e.target.value});

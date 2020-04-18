@@ -6,6 +6,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import {NavLink as ToLink} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const NavBar = () => {
     const user = useSelector(state => state.authorization.user);
@@ -23,6 +25,7 @@ const NavBar = () => {
             <AppBar position="static">
                 <Container>
                     <Toolbar >
+                        <Button color="inherit" component={ToLink} to='/'>Gallery</Button>
                         {user.token ? (
                             <UserBar/>
                         ) : (
